@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stoper</title>
+  </head>
+  <body>
+    <div id="clock">00:00</div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <button id="reset">Reset</button>
+
+    <script>
+      const clock = document.getElementById("clock");
+      let seconds = 0;
+      let minutes = 0;
+      let intervalId = null;
+
+      function setTime() {
+        seconds++;
+        if (seconds === 60) {
+          seconds = 0;
+          minutes++;
+        }
+        if (minutes === 60) {
+          clearInterval(intervalId);
+          intervalId = null;
+
+          seconds = 0;
+          minutes = 0;
+          clock.innerHTML = "00:00";
+          return;
+        }
+        clock.innerHTML =
+          (minutes < 10 ? "0" + minutes : minutes) +
+          ":" +
+          (seconds < 10 ? "0" + seconds : seconds);
+      }
+
+      document.getElementById("start").addEventListener("click", function () {
+        if (intervalId !== null) return;
+
+        intervalId = setInterval(setTime, 1000);
+      });
+
+      document.getElementById("stop").addEventListener("click", function () {
+        clearInterval(intervalId);
+        intervalId = null;
+      });
+
+      document.getElementById("reset").addEventListener("click", function () {
+        clearInterval(intervalId);
+        intervalId = null;
+
+        seconds = 0;
+        minutes = 0;
+        clock.innerHTML = "00:00";
+      });
+    </script>
+  </body>
+</html>

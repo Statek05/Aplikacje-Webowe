@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ćwiczenie 2: Generator haseł</title>
+  </head>
+  <body>
+    <h2>Generator haseł</h2>
+
+    <div>
+      <label for="minLength">Minimalna długość:</label>
+      <input type="number" id="minLength" value="5" min="1" />
+    </div>
+
+    <div>
+      <label for="maxLength">Maksymalna długość:</label>
+      <input type="number" id="maxLength" value="12" min="1" />
+    </div>
+
+    <div>
+      <label for="useUppercase">Wielkie litery?</label>
+      <input type="checkbox" id="useUppercase" />
+    </div>
+
+    <div>
+      <label for="useSpecial">Znaki specjalne?</label>
+      <input type="checkbox" id="useSpecial" />
+    </div>
+
+    <button id="generateBtn">Wygeneruj hasło</button>
+
+    <script>
+      document.getElementById("generateBtn").addEventListener("click", () => {
+        const minLength = parseInt(document.getElementById("minLength").value);
+        const maxLength = parseInt(document.getElementById("maxLength").value);
+        const useUppercase = document.getElementById("useUppercase").checked;
+        const useSpecial = document.getElementById("useSpecial").checked;
+
+        if (minLength > maxLength) {
+          alert("Błąd: Minimalna długość nie może być większa od maksymalnej!");
+          return;
+        }
+
+        const lowerChars = "abcdefghijklmnopqrstuvwxyz";
+        const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+        const numbers = "0123456789";
+
+        let allowedChars = lowerChars + numbers;
+        if (useUppercase) allowedChars += upperChars;
+        if (useSpecial) allowedChars += specialChars;
+
+        const passwordLength =
+          Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+
+        let password = "";
+        for (let i = 0; i < passwordLength; i++) {
+          const randomIndex = Math.floor(Math.random() * allowedChars.length);
+          password += allowedChars[randomIndex];
+        }
+
+        alert(`Wygenerowane hasło: ${password}`);
+      });
+    </script>
+  </body>
+</html>
