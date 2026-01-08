@@ -1,0 +1,68 @@
+### ===========================================
+### SERWIS 3: UŻYTKOWNICY (Port 3003)
+### ===========================================
+
+####################################
+# Sign up
+####################################
+POST http://localhost:3003/api/register
+Content-Type: application/json
+
+{
+    "email": "antoni@statek.pl",
+    "password": "xdxd1234"
+}
+
+####################################
+# Sign in
+####################################
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "email": "antoni@statek.pl",
+    "password": "xdxd1234"
+}
+
+
+####################################
+# User Token
+####################################
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYW5Aa293YWxza2kucGwiLCJpYXQiOjE3Njc2Mjc0NTcsImV4cCI6MTc2NzYzMTA1N30.NvKtV4TKZjjRfvD4_RTZvriC3bZcbKiwgmFAp7NUwS4
+
+
+####################################
+# Get all books
+####################################
+GET http://localhost:3001/api/books
+
+####################################
+# Add book
+####################################
+POST http://localhost:3001/api/books
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Trylogia cz.1: Ogniem i Mieczem",
+    "author": "Henryk Sienkiewicz",
+    "year": 1884
+}
+
+####################################
+# Add Post
+####################################
+POST http://localhost:3002/api/orders
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "userId": 1,
+    "bookId": 1,
+    "quantity": 5
+}
+
+####################################
+# Get post
+####################################
+GET http://localhost:3002/api/orders/1
