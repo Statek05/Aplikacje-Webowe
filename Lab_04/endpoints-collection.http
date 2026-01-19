@@ -9,8 +9,8 @@ POST http://localhost:3003/api/register
 Content-Type: application/json
 
 {
-    "email": "antoni@statek.pl",
-    "password": "xdxd1234"
+    "email": "antoni@kowalski.pl",
+    "password": "xdxd123"
 }
 
 ####################################
@@ -20,16 +20,15 @@ POST http://localhost:3003/api/login
 Content-Type: application/json
 
 {
-    "email": "antoni@statek.pl",
-    "password": "xdxd1234"
+    "email": "antoni@kowalski.pl",
+    "password": "xdxd123"
 }
 
 
 ####################################
 # User Token
 ####################################
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqYW5Aa293YWxza2kucGwiLCJpYXQiOjE3Njc2Mjc0NTcsImV4cCI6MTc2NzYzMTA1N30.NvKtV4TKZjjRfvD4_RTZvriC3bZcbKiwgmFAp7NUwS4
-
+@token = eyJhGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhbnRvbmlAa293YWxza2kucGwiLCJpYXQiOjE3Njc4ODIxMTMsImV4cCI6MTc2Nzg4NTcxM30.o4o0ji03RbNth5OlOhxBAtub-977BQ5v_yZrOjdVAF0
 
 ####################################
 # Get all books
@@ -44,9 +43,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "title": "Trylogia cz.1: Ogniem i Mieczem",
+    "title": "Trylogia cz.2: Potop",
     "author": "Henryk Sienkiewicz",
-    "year": 1884
+    "year": 1886,
 }
 
 ####################################
@@ -58,11 +57,11 @@ Authorization: Bearer {{token}}
 
 {
     "userId": 1,
-    "bookId": 1,
-    "quantity": 5
+    "bookId": 77771,
+    "quantity": 7
 }
 
 ####################################
-# Get post
+# Get posts
 ####################################
 GET http://localhost:3002/api/orders/1
